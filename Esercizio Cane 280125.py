@@ -15,20 +15,26 @@ def discount(prices, isPet, nItems):
     else:
         return 0
 
-prices = [] lista
-isPet = [] lista 
+prices = []
+isPet = []
 
 while True:
     price = float(input("Inserisci il prezzo (-1 per terminare): "))
     if price == -1:
-        confronto con -1
         break
     pet_status = input("Si tratta di un animale? (Y/N): ")
     prices.append(price)
     isPet.append(pet_status.upper() == 'Y')
-    Controllo lettera
-
 nItems = len(prices)
 sconto = discount(prices, isPet, nItems)
-riporto della funzione 
 print(f"Lo sconto applicato è: €{sconto:.2f}")
+
+print("\n--- Scontrino ---")
+for i in range(nItems):
+        item_type = "Animale" if isPet[i] else "Articolo"
+        print(f"Item {i+1}: {item_type}, Prezzo: €{prices[i]:.2f}")
+        print(f"\nTotale articoli: {nItems}")
+        print("-----------------\n")
+totale_finale = sum(prices) - sconto
+print(f"Totale finale da pagare: €{totale_finale:.2f}")
+print(f"Sconto applicato: €{sconto:.2f}")
