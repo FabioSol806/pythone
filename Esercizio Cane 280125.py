@@ -1,4 +1,4 @@
-def discount(prices, isPet, nItems):
+def discount(prices, nItems):
     animal_present = False
     other_items_total = 0
     other_items_count = 0
@@ -22,11 +22,19 @@ while True:
     price = float(input("Inserisci il prezzo (-1 per terminare): "))
     if price == -1:
         break
-    pet_status = input("Si tratta di un animale? (Y/N): ")
+
+    while True:
+        pet_status = input("Si tratta di un animale? (Y/N): ").upper()
+        if pet_status == 'Y' or pet_status == 'N':
+            break
+        else:
+            print("Inserimento non valido. Per favore, scrivi 'Y' o 'N'.")
+
     prices.append(price)
-    isPet.append(pet_status.upper() == 'Y')
+    isPet.append(pet_status == 'Y')
+
 nItems = len(prices)
-sconto = discount(prices, isPet, nItems)
+sconto = discount(prices, nItems)
 print(f"Lo sconto applicato è: €{sconto:.2f}")
 
 print("\n--- Scontrino ---")
@@ -35,6 +43,8 @@ for i in range(nItems):
         print(f"Item {i+1}: {item_type}, Prezzo: €{prices[i]:.2f}")
         print(f"\nTotale articoli: {nItems}")
         print("-----------------\n")
+
 totale_finale = sum(prices) - sconto
+print(f"Totale articoli: {nItems}")
 print(f"Totale finale da pagare: €{totale_finale:.2f}")
 print(f"Sconto applicato: €{sconto:.2f}")
